@@ -1,23 +1,27 @@
-import React from 'react'
+import {useState} from 'react'
 import {assets} from '../assets/assets'
 
 const Navbar = () => {
+
+    const[menu, setMenu] = useState("Menu");
+
+
   return (
-    <div className='navbar'>
-        <img src={assets.logo} alt="" />
-        <ul>
-          <li>Home</li>
-          <li>Menu</li>
-          <li>Mobile-App</li>
-          <li>Contact Us</li>
+    <div class="py-20 px-0 flex justify-between items-center">
+        <img class="w-36" src={assets.logo} alt="" />
+        <ul class="flex list-none text-[#49557e] text-lg gap-5">
+          <li onClick={()=>setMenu("Home")} className={menu==="Home"?"underline underline-offset-1 active:":""}>Home</li>
+          <li onClick={()=>setMenu("Menu")} className={menu==="Menu"?"underline underline-offset-1 active:":""}>Menu</li>
+          <li onClick={()=>setMenu("Mobile-app")} className={menu==="Mobile-app"?"underline underline-offset-1 active:":""}>Mobile-App</li>
+          <li onClick={()=>setMenu("Contact Us")} className={menu==="Contact Us"?"underline underline-offset-1 active:":""}>Contact Us</li>
         </ul>
-        <div className="navbar-right">
-          <img src={assets.search_icon} alt="" />
+        <div class="flex items-center gap-10">
+          <img class="" src={assets.search_icon} alt="" />
           <div className='navbar-search-icon'>
             <img src={assets.basket_icon} alt="" />
             <div className='dot'></div>
           </div>
-          <button>Sign In</button>
+          <button class="bg-transparent text-xs border-2 border-solid border-red-400 px-7 py-2 rounded-full hover:bg-red-300 ease-in duration-300 ">Sign In</button>
         </div>
     </div>
     

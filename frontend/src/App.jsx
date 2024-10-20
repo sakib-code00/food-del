@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 
 const App = () => {
   return (
-    <div className='app'>
+    <div class='w-4/5 m-auto'>
       <Navbar></Navbar>
       
     </div>
