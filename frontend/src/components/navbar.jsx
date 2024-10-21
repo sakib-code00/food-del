@@ -16,10 +16,10 @@ const Navbar = () => {
           <li onClick={()=>setMenu("Contact Us")} className={menu==="Contact Us"?"underline underline-offset-1 active:":""}>Contact Us</li>
         </ul>
         <div class="flex items-center gap-10">
-          <img class="" src={assets.search_icon} alt="" />
-          <div className='navbar-search-icon'>
+          <img src={assets.search_icon} alt="" />
+          <div class="relative">
             <img src={assets.basket_icon} alt="" />
-            <div className='dot'></div>
+            <div class="w-2 h-2 bg-red-400 rounded-full absolute bottom-7 left-7"></div>
           </div>
           <button class="bg-transparent text-xs border-2 border-solid border-red-400 px-7 py-2 rounded-full hover:bg-red-300 ease-in duration-300 ">Sign In</button>
         </div>
