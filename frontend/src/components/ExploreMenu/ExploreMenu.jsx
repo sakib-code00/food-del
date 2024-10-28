@@ -10,7 +10,7 @@ const ExploreMenu = ({category, setCategory}) => {
             {menu_list.map((item,index)=>{
                 return (
                     <div onClick={()=>setCategory(prev=>prev===item.menu_name?"All":item.menu_name)} key={index} className='explore-menu-list-item'>
-                        <img class="w-36 min-w-20 rounded-full cursor-pointer" src={item.menu_image} alt=''></img>
+                        <img className={category === item.menu_name?"border-solid border-8 rounded-full border-red-400":"w-36 min-w-20 rounded-full cursor-pointer"} class="w-36 min-w-20 rounded-full cursor-pointer" src={item.menu_image} alt=''></img>
                         <p class="mt-2 text-slate-700 text-base cursor-pointer">{item.menu_name}</p>
                     </div>
                 )
