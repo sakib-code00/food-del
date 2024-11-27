@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 //placing user order for frontend
 const palceOrder = async (req,res) =>{
 
-    const frontend_url = "http://localhost:5173"
+    const frontend_url = "http://localhost:5174"
     
     try {
         const newOrder = new orderModel({
@@ -56,4 +56,54 @@ const palceOrder = async (req,res) =>{
     }
 }
 
-export {palceOrder}
+const verifyOrder = async (req,res) => {
+    const {orderIdsuccess} = req.body;
+    try {
+        if (success=="true"){
+            await orderModel.findByIdAndUpdate(orderId,{payment:true});
+            res.json({success:true,message:"Paid"})
+        }
+        else{
+            await orderModel.findByIdAndDelete(orderId);
+            res.json({success:false,message:"Not Pain"})
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"})
+    }
+}
+
+//user orders for frontend
+const userOrders = async (req,res) => {
+    try {
+        const orders = await orderModel.find({userId:req.body.userId});
+        res.json({success:true,data:orders})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"})
+    }
+}
+
+//Listing orders for admin
+const listOrders = async (req,res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.json({success:true,data:orders})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"})
+    }
+}
+
+// api for undating order status
+const updateStatus = async (req,res) => {
+    try {
+        await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status});
+        res.json({success:true,message:"Status Updated"})
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error"})
+    }
+}
+
+export {palceOrder,verifyOrder,userOrders,listOrders,updateStatus}
